@@ -17,13 +17,14 @@ namespace ChessBoard
         {
             InitializeComponent();          
         }
-
+        //drawing tools
         Graphics boardPanel;
         SolidBrush blackBrush;
         SolidBrush whiteBrush;
         SolidBrush yellowHighlight;
         SolidBrush redHighlight;
  
+        //game data
         int[] redSquare;
         int[][] yellowSquares;
         BoardLayout chessBoard;
@@ -56,11 +57,11 @@ namespace ChessBoard
             boardOffset = (int)((Math.Min(panel1.Width, panel1.Height)-boardSize)/2);
             //draw board
             drawBoard();
-            //display move shorthand 
-            //##commented out until code to generate shorthand string is complete
-            //toolStripStatusLabel1.Text = chessBoard.MoveShorthand;
+            //display move shorthand, commented out until code to generate shorthand string is complete
+            //toolStripStatusLabel1.Text = chessBoard.MoveShorthand;            
         }
 
+        //process a player clicking the board
         private void panel1_Click(object sender, EventArgs e)
         {
             //find which square was selected
@@ -132,9 +133,9 @@ namespace ChessBoard
             }     
         }
 
+        //draw the chess board on the screen
         private void drawBoard()
-        {
-            //redraw the board on the screen           
+        {              
             Rectangle boardSquare;
             Rectangle iconSquare;
 

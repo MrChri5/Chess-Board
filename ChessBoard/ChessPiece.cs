@@ -21,11 +21,13 @@ namespace ChessBoard
             pieceType = Type;           
         }
 
+        //return the colour of the chess piece
         public colour Colour
         {
             get { return pieceColour; }
         }
 
+        //return the type of the chess piece    
         public type Type
         {
             get { return pieceType; }

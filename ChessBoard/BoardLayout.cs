@@ -28,7 +28,7 @@ namespace ChessBoard
         private string moveShorthand;
 
         public BoardLayout() : this(false) { }
-        //##?? turn castling Bools into (private?) variables of BoardLayout
+        //## turn castling Bools into private variables of BoardLayout
         public BoardLayout(BoardLayout copy,bool CBL, bool CBR, bool CWL, bool CWR) : this(true)
         {
             for (int i = 0; i < 8; i++)
@@ -114,15 +114,6 @@ namespace ChessBoard
             return boardLayout[i, j];
         }
 
-
-        //TO DO GIVE CHECK/CHECKMATE MESSAGE 
-        //      WRITE OTHER MESSAGES FOR SHORTHAND
-        //          ADD MESSAGES TO LOG FOR DEBUG
-        //      DRAW BACKGROUND
-        //      FINISH CHECK/CHECKMATE AND VALID MOVES LOGIC ??? need to test
-
-
-
         public bool MoveChessPiece(ChessPiece.colour colour, int fromI, int fromJ, int toI, int toJ)
         {
             validMovesPiecesAry = GetValidMovesPieces(colour);
@@ -187,7 +178,7 @@ namespace ChessBoard
                             }
 
                             //en passent needs clearing for all pieces here
-                            //## !!comment the use of enPassent bool better!!
+                            //## comment the use of enPassent bool better
                             enPassent = null;
 
                             if (boardLayout[toI, toJ].Type == ChessPiece.type.Pawn)
@@ -264,7 +255,6 @@ namespace ChessBoard
                             }
 
                             // change castling flags
-                            //##? find way to do switch
                             if ((fromI == 0 && fromJ == 0) || (toI == 0 && toJ == 0))
                             {
                                 castleBlackLeft = false;
@@ -315,8 +305,8 @@ namespace ChessBoard
                     {
                         foreach (int[] move in (GetValidMoves(i, j)))
                         {
-                            //## ??consider optimizing/modifing GetValidMoves to return bool in this case, exit GetValidMoves once first move is found??
-                            //## !!also, no need to the foreach, only need to check the first move!!
+                            //## Consider optimizing/modifing GetValidMoves to return bool in this case, exit GetValidMoves once first move is found??
+                            //## also, no need to the foreach, only need to check the first move
                             if (move != null)
                             {
                                 addValidMovePiece(i, j);
@@ -368,7 +358,7 @@ namespace ChessBoard
                     //castle moves                     
                     if (boardLayout[i, j].Colour == ChessPiece.colour.Black & !blackInCheck)
                     {
-                        //##DOUBLE CHECK RULE OF BEING IN CHECK FOR THESE MOVES                       
+                        //##Double check rule of being in check for these moves                     
                         if (castleBlackLeft && validateSpace(i,j,1, 0,boardLayout[i,j].Colour) && validateSpace(i,j,2, 0,boardLayout[i,j].Colour) && validateSpace(i,j,3, 0,boardLayout[i,j].Colour))
                         {
                             addValidMove(2, 0);
@@ -551,12 +541,12 @@ namespace ChessBoard
                         if (boardLayout[i, j].Colour == ownColour && boardLayout[i, j].Type == ChessPiece.type.King)
                         {
                             kingCoord = new int[2] { i, j };
-                            //##break??
+                            //##break?
                         }
                     }
-                    //##error??
+                    //##error?
                 }
-                //## what if kingCoord is still -1,-1 ???
+                //## what if kingCoord is still -1,-1 ?
                 kingMoves = GetValidMoves(kingCoord);
 
                 int k = kingMoves.Distinct().Count() - 1;
@@ -815,7 +805,6 @@ namespace ChessBoard
         }
         public string[] GetRankFile(int i, int j)
         {
-            //## rewrite into two separate methods or modify this to output string instead of string[]
             string rank = ((char)(((int)'a') + i)).ToString();
             string file = (8 - j).ToString();
 
