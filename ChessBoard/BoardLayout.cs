@@ -556,8 +556,26 @@ namespace ChessBoard
                     }
                     //##error??
                 }
-                //## what if kingCoord is still -1,-1 ???
-                kingMoves = GetValidMoves(kingCoord);
+                //When checking a hypothetical BoardLayout where the king has been taken, kingCoord will still be (-1,-1)
+                //in this case set the check and checkmate flags and end processing for this colour.
+                if (kingCoord[0] == -1 && kingCoord[1] == -1) {
+                    if (ownColour == ChessPiece.colour.Black)
+                    {
+                        blackInCheck = true;
+                        blackInCheckmate = true;
+                    }
+                    else
+                    {
+                        whiteInCheck = true;
+                        whiteInCheckmate = true;
+                    }
+                    break;
+                }
+                else { 
+                    kingMoves = GetValidMoves(kingCoord);
+                }
+
+
 
                 int k = kingMoves.Distinct().Count() - 1;
                 int numAttackers = 0;
